@@ -1,6 +1,6 @@
 /* 
 
-Problem name: Find missing and Repating
+Problem name: Find missing and Repeating
 Platform: Geekforgeeks
 
 Statement:

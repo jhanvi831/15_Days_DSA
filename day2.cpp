@@ -28,6 +28,8 @@ Explanation: Sum of 2, 3, 8, 10 = 23,
 sum of 2, 4, 7, 10 = 23 and sum of 3,
 5, 7, 8 = 23.
 
+gfg link: https://practice.geeksforgeeks.org/problems/find-all-four-sum-numbers1732/1#
+
 */
 
 //code

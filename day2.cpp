@@ -2,58 +2,97 @@
 
 SEARCHING AND SORTING ALGORITHMS
 
-Problem:
-Searching in an array where adjacent differ by at most k
+Problem name: Find All Four Sum Numbers 
 
-Difficulty Level : Easy
+Difficulty: Medium
 
-Explanation:
-A step array is an array of integers where each element has a 
-difference of at most k with its neighbor. Given a key x, we 
-need to find the index value of x if multiple-element exist to 
-return the first occurrence of the key.
+Statement:
+Given an array of integers and another number. 
+Find all the unique quadruple from the given array that sums up to the given number.
 
-Examples: 
- 
-Input : arr[] = {4, 5, 6, 7, 6}
-           k = 1
-           x = 6
-Output : 2
-The first index of 6 is 2.
+Example 1:
 
-Input : arr[] = {20, 40, 50, 70, 70, 60}  
-          k = 20
-          x = 60
-Output : 5
-The index of 60 is 5
+Input:
+N = 5, K = 3
+A[] = {0,0,2,1,1}
+Output: 0 0 1 2 $
+Explanation: Sum of 0, 0, 1, 2 is equal
+to K.
+Example 2:
 
-gfg link: https://www.geeksforgeeks.org/searching-array-adjacent-differ-k/
+Input:
+N = 7, K = 23
+A[] = {10,2,3,4,5,7,8}
+Output: 2 3 8 10 $2 4 7 10 $3 5 7 8 $
+Explanation: Sum of 2, 3, 8, 10 = 23,
+sum of 2, 4, 7, 10 = 23 and sum of 3,
+5, 7, 8 = 23.
 
 */
 
 //code
-
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
 
-int adjacentSearch(int a[], int n, int k, int x){
-    int i=0;
-    while(i<n){
-        if(a[i]==x)
-            return i;
-        i = i + max(1, abs( (x-a[i])/k) );
+class Solution{
+    public:
+    vector<vector<int> > fourSum (vector<int> &arr, int k) {
+     
+        vector <vector<int> > ans;
+        set <vector<int>> t;
+      
+        //sort the vector array
+        sort(arr.begin(), arr.end());
+     
+        for(int i = 0; i < arr.size()-3; i++){
+            for(int j = i+1; j < arr.size()-2; j++){
+                int left = j+1;
+                int right = arr.size()-1;
+             
+                while(left<right){
+                if(arr[i] + arr[j] + arr[left] + arr[right] == k){
+                    t.insert({arr[i],arr[j],arr[left], arr[right]});
+                    left++;
+                    right--;
+                } 
+                else if(arr[i] + arr[j] + arr[left] + arr[right] < k){
+                    left++;
+                }
+                else{
+                    right--;
+                }
+              } 
+           }
+        }
+        for(auto i: t){
+            ans.push_back(i);
+        }
+        return ans;
     }
-    return -1;
-}
+};
 
-int main(){
-    int a[] = {2,4,5,6,7,8};
-    int n = 6;
-    int k = 2;
-    int x = 7;
-    
-    cout<< adjacentSearch(a, n, k, x) <<endl;
-    
+int main() {
+    int t;
+    cin >> t;
+    while (t--) {
+        int n, k, i;
+        cin >> n >> k;
+        vector<int> a(n);
+        for (i = 0; i < n; i++) {
+            cin >> a[i];
+        }
+        Solution ob;
+        vector<vector<int> > ans = ob.fourSum(a, k);
+        for (auto &v : ans) {
+            for (int &u : v) {
+                cout << u << " ";
+            }
+            cout << "$";
+        }
+        if (ans.empty()) {
+            cout << -1;
+        }
+        cout << "\n";
+    }
     return 0;
-}
-
+} 

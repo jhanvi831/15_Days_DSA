@@ -1,6 +1,6 @@
 /*
 Reverse a linked list
-(Iterative Method)
+(Iterative Method & Recursive)
 
 */
 

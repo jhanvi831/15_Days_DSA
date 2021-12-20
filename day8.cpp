@@ -51,6 +51,18 @@ void reverse_ll(node* &head){
     return;
 }
 
+node* reverse_recur(node* &head){
+    
+    if(head == NULL || head->next == NULL){
+        return head;
+    }
+    
+    node *newhead = reverse_recur(head->next);
+    head->next->next = head;
+    head->next = NULL;
+    return newhead;
+}
+
 void display(node *head){
     node* temp = head;
     while(temp != NULL){
@@ -74,6 +86,9 @@ int main(){
     reverse_ll(head);
     
     display(head);
+    
+    node *newhead = reverse_recur(head);
+    display(newhead);
     
     return 0;
 }

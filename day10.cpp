@@ -1,3 +1,14 @@
+/*
+
+PROBLEM: Find first node of loop in a linked list
+
+STATEMENT: return the pointer to the stating of the loop
+
+gfg link: https://www.geeksforgeeks.org/find-first-node-of-loop-in-a-linked-list/
+
+*/
+
+//code
 #include<iostream>
 using namespace std;
 
